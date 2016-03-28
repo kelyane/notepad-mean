@@ -1,0 +1,22 @@
+{
+  "name": "notepad-mean",
+  "version": "1.4.0",
+  "description": "Notepad MEAN",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kelyane/notepad-mean"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "~4.11.x",
+    "parse": "~1.8.0",
+    "parse-server": "~2.2.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=4.3"
+  }
+}
