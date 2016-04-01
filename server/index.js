@@ -12,13 +12,18 @@ var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://ds023088.mlab.com:23088/sakura',
   cloud: process.env.CLOUD_CODE_MAIN  || __dirname + '/../client/main.js',
   appId: process.env.APP_ID || 'notepadId',
-  masterKey: process.env.MASTER_KEY || '', 
-  serverURL: process.env.SERVER_URL || 'https://notepad-mean-kelyane1.c9users.io/parse'
+  masterKey: process.env.MASTER_KEY || '',
+  javascriptKey: 'notepadIdJS',
+  serverURL: process.env.SERVER_URL || 'https://notepad-mean-kelyane1.c9users.io/parse',
+  liveQuery: {
+    classNames: ["Note"]
+  }
 });
 
 var app = express();
 
 app.use('/client', express.static(path.join(__dirname, '/../client')));
+app.use('/public/angular', express.static(path.join(__dirname, '/node_modules/angular/')));
 
 // Serve the Parse API on the /parse URL prefix
 var mountPath = process.env.PARSE_MOUNT || '/parse';
@@ -39,3 +44,6 @@ var httpServer = require('http').createServer(app);
 httpServer.listen(port, function() {
     console.log('my app running on port ' + port + '.');
 });
+
+ParseServer.createLiveQueryServer(httpServer);
+
