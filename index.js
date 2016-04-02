@@ -10,7 +10,7 @@ if (!databaseUri) {
 
 var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://ds023088.mlab.com:23088/sakura',
-  cloud: process.env.CLOUD_CODE_MAIN  || __dirname + '/../client/main.js',
+  cloud: process.env.CLOUD_CODE_MAIN  || __dirname + '/client/main.js',
   appId: process.env.APP_ID || 'notepadId',
   masterKey: process.env.MASTER_KEY || '',
   javascriptKey: 'notepadIdJS',
@@ -19,7 +19,7 @@ var api = new ParseServer({
 
 var app = express();
 
-app.use('/client', express.static(path.join(__dirname, '/../client')));
+app.use('/client', express.static(path.join(__dirname, '/client')));
 app.use('/public/angular', express.static(path.join(__dirname, '/node_modules/angular/')));
 
 // Serve the Parse API on the /parse URL prefix
@@ -32,7 +32,7 @@ app.use(mountPath, api);
 });*/
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '/../client/index.html'));
+  res.sendFile(path.join(__dirname, '/client/index.html'));
 });
 
 
