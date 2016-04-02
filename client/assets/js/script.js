@@ -9,7 +9,7 @@
         $scope.currentNote = {};
         
         Parse.initialize("notepadId", "notepadIdJS");
-        Parse.serverURL = 'https://notepad-mean-kelyane1.c9users.io/parse'
+        Parse.serverURL = 'https://notepad-mean.herokuapp.com/parse'
         var Note = Parse.Object.extend("Note");
 
         $scope.addNewNote = function(){

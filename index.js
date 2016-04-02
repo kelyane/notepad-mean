@@ -14,7 +14,7 @@ var api = new ParseServer({
   appId: process.env.APP_ID || 'notepadId',
   masterKey: process.env.MASTER_KEY || '',
   javascriptKey: 'notepadIdJS',
-  serverURL: process.env.SERVER_URL || 'https://notepad-mean-kelyane1.c9users.io/parse',
+  serverURL: process.env.SERVER_URL || 'https://notepad-mean.herokuapp.com/parse',
 });
 
 var app = express();
