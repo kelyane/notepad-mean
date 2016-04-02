@@ -11,22 +11,23 @@
         Parse.initialize("notepadId", "notepadIdJS");
         Parse.serverURL = 'https://notepad-mean-kelyane1.c9users.io/parse'
         var Note = Parse.Object.extend("Note");
-       
 
         $scope.addNewNote = function(){
           $scope.currentNote = {};
           document.getElementById("currentNote").focus();
         }
         
+        var myNote = function(note){
+          return {id: note.id, text: note.get("note")};
+        }
+        
         $scope.listNotes = function(){
-          
           var query = new Parse.Query("Note");
-
           query.find({
             success: function(data) { 
              
               $scope.notes = data.map(function(value) {
-                return { id : value.id , text : value.get("note") }
+                return myNote(value);
               })
               $scope.$apply();
 
@@ -35,13 +36,9 @@
               console.log(error);
             }
           })
-
-             
         };
         
-        
         $scope.submit = function(){
-          
             var query = new Parse.Query("Note");
             query.get($scope.currentNote.id,{
               success : function(note){
@@ -57,7 +54,7 @@
                 newNote.save(null, {
                   success: function(newNote) {
                     $scope.listNotes();
-                    $scope.currentNote = {id : newNote.id, text : newNote.get("note")};
+                    $scope.currentNote = myNote(newNote);
                   },
                   error: function(newNote, error) {
                     console.log(error);
@@ -68,13 +65,11 @@
             
         };
         
-        
         $scope.showNote = function(idNote){
           var query = new Parse.Query("Note");
-
           query.get(idNote,{
-            success: function(data) { 
-              $scope.currentNote = { id : idNote, text : data.get("note") };
+            success: function(note) { 
+              $scope.currentNote = myNote(note);
               $scope.$apply();
 
             },

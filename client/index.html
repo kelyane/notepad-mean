@@ -24,8 +24,8 @@
        
           <section class="col-xs-12 col-sm-6 col-lg-4">
             <ul class="list-group" >
-              <li class="list-group-item" ng-repeat="note in notes"  ng-click="showNote(note.id)">
-                {{note.text}}
+              <li class="list-group-item" ng-repeat="note in notes"  ng-click="showNote(note.id)" >
+                {{note.text | limitTo:15}}
               </li>
             </ul>
           </section>

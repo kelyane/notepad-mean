@@ -15,9 +15,6 @@ var api = new ParseServer({
   masterKey: process.env.MASTER_KEY || '',
   javascriptKey: 'notepadIdJS',
   serverURL: process.env.SERVER_URL || 'https://notepad-mean-kelyane1.c9users.io/parse',
-  liveQuery: {
-    classNames: ["Note"]
-  }
 });
 
 var app = express();
@@ -26,15 +23,15 @@ app.use('/client', express.static(path.join(__dirname, '/../client')));
 app.use('/public/angular', express.static(path.join(__dirname, '/node_modules/angular/')));
 
 // Serve the Parse API on the /parse URL prefix
-var mountPath = process.env.PARSE_MOUNT || '/parse';
+var mountPath = '/parse';
 app.use(mountPath, api);
 
 // Parse Server plays nicely with the rest of your web routes
-app.get('/', function(req, res) {
+/*app.get('/', function(req, res) {
   res.status(200).send('HIII!!!!');
-});
+});*/
 
-app.get('/test', function(req, res) {
+app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/../client/index.html'));
 });
 
@@ -45,5 +42,4 @@ httpServer.listen(port, function() {
     console.log('my app running on port ' + port + '.');
 });
 
-ParseServer.createLiveQueryServer(httpServer);
 
