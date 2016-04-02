@@ -1,0 +1,7 @@
+{
+  "name": "NotePad JS",
+  "description": "A technical interview",
+  "repository": "https://github.com/kelyane/notepad-mean",
+  "keywords": ["node", "express", "notepad"],
+  "image": "heroku/nodejs"
+}
