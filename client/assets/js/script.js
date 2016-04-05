@@ -86,6 +86,7 @@
                 note.destroy({
                   success: function(note) {
                     $scope.listNotes();
+                    $scope.currentNote = {};
                   },
                   error: function(note, error) {
                     console.log(error);
