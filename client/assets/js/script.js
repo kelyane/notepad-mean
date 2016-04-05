@@ -79,6 +79,25 @@
           })
         }
         
+        $scope.delete = function(){
+           var query = new Parse.Query("Note");
+            query.get($scope.currentNote.id,{
+              success : function(note){
+                note.destroy({
+                  success: function(note) {
+                    $scope.listNotes();
+                  },
+                  error: function(note, error) {
+                    console.log(error);
+                  }
+                });
+              },
+              error: function(newNote, error) {
+                console.log(error);
+              }
+            });
+        }
+        
         $scope.listNotes();
   }); 
  
